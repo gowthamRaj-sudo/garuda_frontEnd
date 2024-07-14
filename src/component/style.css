@@ -1,179 +1,234 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  padding: 0;
+body,
+html {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to bottom, #0d0d2b, #000000);
+  color: white;
+
+  /* background-image: url(https://img.freepik.com/free-photo/close-up-photo-painting-wood-brown-color_176420-4794.jpg?t=st=1720939725~exp=1720943325~hmac=50fc1fca6d2532fc80af7a8cc0d099c80f9908cd77dc4db66f2f628e7dfa7d20&w=1380);
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
-.html {
-  font-size: 62.5%;
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.navbar input[type='checkbox'],
-.navbar .hamburger-lines {
-  display: none;
+::-webkit-scrollbar-track {
+  background: #0c0c27;
 }
 
-.container {
-  max-width: 1200px;
-  width: 90%;
-  margin: auto;
+::-webkit-scrollbar-thumb {
+  background: #ff4081;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e00070;
 }
 
 .navbar {
-  box-shadow: 0px 5px 10px 0px #aaa;
   position: fixed;
-  width: 100%;
-  background: #fff;
-  color: #000;
-  opacity: 0.85;
-  z-index: 100;
-}
-
-.navbar-container {
+  top: 40px; /* Added more margin-top */
+  left: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  margin: 0 60px;
   display: flex;
   justify-content: space-between;
-  height: 64px;
+  font-size: 16px;
   align-items: center;
+  transition: background 0.3s, color 0.1s, top 0.3s, left 0.3s, right 0.3s,
+    padding 0.3s, margin 0.3s, box-shadow 0.3s;
+  z-index: 1000;
 }
 
-.menu-items {
-  order: 2;
-  display: flex;
-}
-.logo {
-  order: 1;
-  font-size: 2.3rem;
-}
-
-.menu-items li {
-  list-style: none;
-  margin-left: 1.5rem;
-  font-size: 1.3rem;
+.navbar.sticky {
+  background: #0c0c27;
+  color: #ff4081;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* White shadow */
 }
 
 .navbar a {
-  color: #444;
+  color: inherit; /* Use inherit to ensure color change on scroll */
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease-in-out;
+  font-weight: 600;
+  margin: 0 15px;
+  transition: color 0.3s;
 }
 
-.navbar a:hover {
-  color: #117964;
+.container {
+  height: 100vh;
+  text-align: center;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2; /* Ensure content is above particles */
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    opacity: 0.95;
-  }
+.container:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.253);
+}
 
-  .navbar-container input[type='checkbox'],
-  .navbar-container .hamburger-lines {
-    display: block;
-  }
+h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
 
-  .navbar-container {
-    display: block;
-    position: relative;
-    height: 64px;
-  }
+p {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
 
-  .navbar-container input[type='checkbox'] {
-    position: absolute;
-    display: block;
-    height: 32px;
-    width: 30px;
-    top: 20px;
-    left: 20px;
-    z-index: 5;
+.cta-button {
+  background: linear-gradient(135deg, #ff4081, #e00070);
+  padding: 1em 2em;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(255, 64, 129, 0.5);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  background: linear-gradient(135deg, #e00070, #ff4081);
+  box-shadow: 0 0 25px rgba(255, 64, 129, 0.7);
+}
+
+.particles {
+  position: fixed; /* Changed to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1; /* Ensure particles are below content */
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 5px 1px white;
+  animation: float 10s infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(calc(-50vw + 100%));
     opacity: 0;
-    cursor: pointer;
-  }
-
-  .navbar-container .hamburger-lines {
-    display: block;
-    height: 28px;
-    width: 35px;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .navbar-container .hamburger-lines .line {
-    display: block;
-    height: 4px;
-    width: 100%;
-    border-radius: 10px;
-    background: #333;
-  }
-
-  .navbar-container .hamburger-lines .line1 {
-    transform-origin: 0% 0%;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .navbar-container .hamburger-lines .line2 {
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .navbar-container .hamburger-lines .line3 {
-    transform-origin: 0% 100%;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .navbar .menu-items {
-    padding-top: 100px;
-    background: #fff;
-    height: 100vh;
-    max-width: 300px;
-    transform: translate(-150%);
-    display: flex;
-    flex-direction: column;
-    margin-left: -40px;
-    padding-left: 40px;
-    transition: transform 0.5s ease-in-out;
-    box-shadow: 5px 0px 10px 0px #aaa;
-    overflow: scroll;
-  }
-
-  .navbar .menu-items li {
-    margin-bottom: 1.8rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-
-  .logo {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2.5rem;
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .menu-items {
-    transform: translateX(0);
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .hamburger-lines .line1 {
-    transform: rotate(45deg);
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .hamburger-lines .line2 {
-    transform: scaleY(0);
-  }
-
-  .navbar-container input[type='checkbox']:checked ~ .hamburger-lines .line3 {
-    transform: rotate(-45deg);
   }
 }
 
-@media (max-width: 500px) {
-  .navbar-container input[type='checkbox']:checked ~ .logo {
-    display: none;
-  }
+/* Small stars background */
+.star-background {
+  position: fixed; /* Changed to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 0; /* Ensure star background is below everything */
+}
+
+.star {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+
+  opacity: 0.8;
+}
+
+/* Additional section styling */
+.features {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+}
+
+.feature-item {
+  max-width: 300px;
+  text-align: center;
+  padding: 20px;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.logos img {
+  max-width: 100px;
+  margin: 20px;
+}
+
+.slider {
+  width: 80%;
+  max-width: 800px;
+  overflow: hidden;
+  position: relative;
+  margin: 20px auto;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slider img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.slider-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.slider-button {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
 }

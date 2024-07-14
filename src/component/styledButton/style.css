@@ -1,0 +1,37 @@
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC|Annie+Use+Your+Telescope);
+
+body {
+  font-family: 'Annie Use Your Telescope', cursive;
+}
+.button {
+  position: relative;
+  width: 190px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.text {
+  position: absolute;
+  top: 56px;
+  left: 55px;
+  transition: all, 1s;
+}
+.img-back {
+  transition: all, 1s;
+  height: 200px;
+  width: 200px;
+  background: url('http://www.onlygfx.com/wp-content/uploads/2017/04/grunge-brush-stroke-banner-2-6-1024x250.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translatex(-200px);
+}
+.button:hover {
+  cursor: pointer;
+}
+.button:hover > .img-back {
+  transform: translatex(0px);
+}
+.button:hover > .text {
+  color: #fff;
+}
